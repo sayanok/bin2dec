@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import "./App.css";
 
 const App: React.FC = () => {
-  const [convertedNumber, setConvertedNumber] = useState<number>();
+  const [convertedNumber, setConvertedNumber] = useState<number>(0);
   const [numericErrorMessage, setNumericErrorMessage] = useState<string>();
   const regexp = new RegExp("[^0-1]");
 
-  function convertToBinary(inputNumber: number): void {
-    let hoge: number;
-
-    hoge = 10;
-
-    setConvertedNumber(hoge);
+  function convertToBinary(inputNumber: string): void {
+    if (!inputNumber) {
+      setConvertedNumber(0);
+    } else {
+      setConvertedNumber(parseInt(inputNumber, 2));
+    }
   }
 
   function checkInputNumber(inputNumber: string): void {
@@ -29,7 +28,7 @@ const App: React.FC = () => {
         <textarea
           maxLength={8}
           rows={1}
-          onChange={(e) => [checkInputNumber(e.target.value), convertToBinary(parseInt(e.target.value))]}
+          onChange={(e) => [checkInputNumber(e.target.value), convertToBinary(e.target.value)]}
         />
       </form>
       <p>{numericErrorMessage}</p>
