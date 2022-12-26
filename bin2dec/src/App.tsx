@@ -9,7 +9,13 @@ const App: React.FC = () => {
     if (!inputNumber) {
       setConvertedNumber(0);
     } else {
-      setConvertedNumber(parseInt(inputNumber, 2));
+      let result = 0;
+      let n = 0;
+      for (let i = 0; i < inputNumber.length; i++) {
+        n = parseInt(inputNumber.charAt(i)) * 2 ** (inputNumber.length - (i + 1));
+        result = result + n;
+      }
+      setConvertedNumber(result);
     }
   }
 
